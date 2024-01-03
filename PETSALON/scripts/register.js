@@ -11,37 +11,43 @@ let petSalon = {
         open:"9:00 am",
         close:"8:00 pm"
     },
-    pets:[
-        {
-            name:"Lucas",
-            age:80,
-            gender:"Male",
-            service:"Grooming",
-            breed:"Cat"
-        },
-        {
-            name:"Scooby",
-            age:30,
-            gender:"Male",
-            service:"Nail Cut",
-            breed:"Dog"
-        },
-        {
-            name:"Tweety",
-            age:60,
-            gender:"Female",
-            service:"Vaccines",
-            breed:"Bird"
-        }
-        
-    ]
+
+    pets:[]
+
 }
 
-console.log(petSalon.pets);
-//displaying names
-console.log(petSalon.pets[0].name);
+//object constructor (function)
+function Pet(name,age,gender,breed){
+    this.name=name;
+    this.age=age;
+    this.gender=gender;
+    this.breed=breed;
+}
 
-//total of elements in the array
-console.log(petSalon.pets.length);
+function register(){
+    console.log("Registering");
+    //get the vlaues from the inputs
+    let inputName = document.getElementById("txtName").value;
+    let inputAge = document.getElementById("txtAge").value;
+    let inputGender = document.getElementById("txtGender").value;
+    let inputBreed = document.getElementById("txtBreed").value;
 
-//document.getElementById("title").innerHTML=petSalon.name;
+    //creating the obj
+    let newPet = new Pet(inputName, inputAge, inputGender, inputBreed);
+
+    //push the object
+    petSalon.pets.push(newPet);
+
+    //display the pets aray on the console
+    console.log(petSalon.pets);
+}
+
+//creating pets using constructor
+let p1= new Pet("Scooby", 60, "Male","Dog");
+let p2= new Pet("Tweety",20,"Female","Bird");
+let p3= new Pet("Max", 50, "Male","Cat");
+//pushing pets into the pets array
+petSalon.pets.push(p1,p2,p3);
+
+console.log(petSalon)
+
