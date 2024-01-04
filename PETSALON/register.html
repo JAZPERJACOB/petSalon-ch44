@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/mystyle.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <h1>The Fashion Pet</h1>
+        <h1>The Pet Salon</h1>
     </header>
     <main>
-        <div>
+        <div class="register-pet">
             <h2>Register a new pet</h2>
             <div>
                 <label>Name:</label>
@@ -28,9 +29,35 @@
                 <label>Breed</label>
                 <input type="text" id="txtBreed">
             </div>
+            <div>
+                <lablel>Service</lablel>
+                <select>
+                    <option>--Select a Service--</option>
+                    <option>Grooming</option>
+                    <option>Nail Trimming</option>
+                    <option>Hair Cut</option>
+                    <option>Full Wash</option>
+                </select>
+            </div>
+            <div>
+                <label>Type</label>
+                <select>
+                    <option>--Type of Animal--</option>
+                    <option>Dog</option>
+                    <option>Cat</option>
+                    <option>Bird</option>
+                    <option>Reptile</option>
+                </select>
+            </div>
             <button onclick="register()">Register</button>
+        </div>
+
+        <h2>Registered Pets</h2>
+        <div id="pets">
+
         </div>
     </main>
     <script src="./scripts/register.js"></script>
+    <script src="./scripts/diplay.js"></script>
 </body>
 </html>

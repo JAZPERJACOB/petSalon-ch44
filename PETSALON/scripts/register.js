@@ -17,11 +17,13 @@ let petSalon = {
 }
 
 //object constructor (function)
-function Pet(name,age,gender,breed){
+function Pet(name,age,gender,breed,service,type){
     this.name=name;
     this.age=age;
     this.gender=gender;
     this.breed=breed;
+    this.service=service;
+    this.type=type;
 }
 
 function register(){
@@ -31,23 +33,28 @@ function register(){
     let inputAge = document.getElementById("txtAge").value;
     let inputGender = document.getElementById("txtGender").value;
     let inputBreed = document.getElementById("txtBreed").value;
+    let inputService = document.getElementById("txtService").value;
+    let inputType = document.getElementById("txtType").value;
 
     //creating the obj
-    let newPet = new Pet(inputName, inputAge, inputGender, inputBreed);
+    let newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputType);
 
     //push the object
     petSalon.pets.push(newPet);
 
     //display the pets aray on the console
-    console.log(petSalon.pets);
+    displayPetCards();
 }
 
-//creating pets using constructor
-let p1= new Pet("Scooby", 60, "Male","Dog");
-let p2= new Pet("Tweety",20,"Female","Bird");
-let p3= new Pet("Max", 50, "Male","Cat");
-//pushing pets into the pets array
-petSalon.pets.push(p1,p2,p3);
+function init(){
+    //creating pets using constructor
+    let p1= new Pet("Scooby", 60, "Male","pitbull", "Grooming", "Dog");
+    let p2= new Pet("Tweety",20,"Female","Parrot", "Wash", "Bird");
+    let p3= new Pet("Max", 50, "Male","Long haired", "Grooming", "Cat");
+    //pushing pets into the pets array
+    petSalon.pets.push(p1,p2,p3);
 
-console.log(petSalon)
+    displayPetCards();
+}
 
+window.onload=init; //waits for render the HTML
