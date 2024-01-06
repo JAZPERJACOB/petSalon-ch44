@@ -15,7 +15,7 @@ let petSalon = {
     pets:[]
 
 }
-
+let counter=0;
 //object constructor (function)
 function Pet(name,age,gender,breed,service,type){
     this.name=name;
@@ -24,8 +24,24 @@ function Pet(name,age,gender,breed,service,type){
     this.breed=breed;
     this.service=service;
     this.type=type;
+    this.id=counter++;
 }
 
+function isValid(aPet){
+    let validation=true;
+
+    if (aPet.name==""){
+        validation=false;
+        alert("Please add the name")
+    }
+
+    if (aPet.service==""){
+        validation=false;
+        alert("Please add service")
+    }
+
+    return validation;
+}
 function register(){
     console.log("Registering");
     //get the vlaues from the inputs
@@ -40,12 +56,26 @@ function register(){
     let newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputType);
 
     //push the object
-    petSalon.pets.push(newPet);
-
-    //display the pets aray on the console
-    displayPetCards();
+    if(isValid(newPet)==true){
+        petSalon.pets.push(newPet);
+    
+        //display the pets aray on the console
+        displayPetCards();
+    }
 }
 
+function deletePet(petID){
+    console.log("Deleting pet" + petID);
+    let deleteIndex;
+    document.getElementById(petID).remove(); //remove from HTML
+    for(let i=0; i<petSalon.pets.length;i++){//travelin the array
+        let pet=petSalon.pet[i];//getting the current pet
+        if (pet.id==petID){
+            deleteIndex=i; //we found the pet, store the index
+        }
+    }
+    petSalon.pets.splice(deleteIndex,1);//remove the pet form the array
+}
 function init(){
     //creating pets using constructor
     let p1= new Pet("Scooby", 60, "Male","pitbull", "Grooming", "Dog");
