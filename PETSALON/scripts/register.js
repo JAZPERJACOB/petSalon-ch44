@@ -32,12 +32,12 @@ function isValid(aPet){
 
     if (aPet.name==""){
         validation=false;
-        alert("Please add the name")
+        $("#notifications").text("Insert the name").fadeIn(300).delay(2000).slideUp(300);
     }
 
     if (aPet.service==""){
         validation=false;
-        alert("Please add service")
+        $("#notifications").text("Insert the age").fadeIn(300).delay(2000).slideUp(300);
     }
 
     return validation;
@@ -61,8 +61,16 @@ function register(){
     
         //display the pets aray on the console
         displayPetCards();
+        $("#notifications").text("The registration was successful").addClass("alert-success").fadeIn(300).delay(2000).slideup(300);
+    }
+    else{
+        showNotification("notifications","alert-danger","Please add all the required fields!");
     }
 }
+function showNotification(id,styling,message){
+$("$"+id).text(message).addClass(styling).fadeIn(300).delay(2000).slideUp(300);
+}
+
 
 function deletePet(petID){
     console.log("Deleting pet" + petID);
@@ -85,6 +93,10 @@ function init(){
     petSalon.pets.push(p1,p2,p3);
 
     displayPetCards();
+
+    //hook events
+    $("#notifications").hide();
+
 }
 
 window.onload=init; //waits for render the HTML
