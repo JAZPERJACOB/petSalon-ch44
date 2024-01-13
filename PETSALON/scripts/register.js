@@ -16,14 +16,28 @@ let petSalon = {
 
 }
 let counter=0;
+
+function readArray(){
+    //get the info from the LS
+    let data=localStorage.getItem("services");
+    if (!data){//not data?
+        return[];// creating the array the first time
+    }else{
+        //parse it back into array (obj)
+        let list = JSON.parse(data);
+        //display the array on the console
+        return list;
+    }
+}
 //object constructor (function)
-function Pet(name,age,gender,breed,service,type){
+function Pet(name,age,gender,breed,service,type,price){
     this.name=name;
     this.age=age;
     this.gender=gender;
     this.breed=breed;
     this.service=service;
     this.type=type;
+    this.price=price;
     this.id=counter++;
 }
 
@@ -51,9 +65,10 @@ function register(){
     let inputBreed = document.getElementById("txtBreed").value;
     let inputService = document.getElementById("txtService").value;
     let inputType = document.getElementById("txtType").value;
+    let inputPrice = document.getElementById("txtPrice").value;
 
     //creating the obj
-    let newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputType);
+    let newPet = new Pet(inputName, inputAge, inputGender, inputBreed, inputService, inputType, inputPrice, getServicePrice(inputService));
 
     //push the object
     if(isValid(newPet)==true){
@@ -65,6 +80,17 @@ function register(){
     }
     else{
         showNotification("notifications","alert-danger","Please add all the required fields!");
+    }
+}
+
+function getServicePrice(servicesDescription){
+    let services = readArray();//get services list from LS
+    let price;
+    for(let i=0; i<services.length;i++){ //traveling the array
+        let service = services[i];
+        if(service.description==servicesDescription){
+            price=service.price; //assign the price
+        }
     }
 }
 function showNotification(id,styling,message){
@@ -84,14 +110,21 @@ function deletePet(petID){
     }
     petSalon.pets.splice(deleteIndex,1);//remove the pet form the array
 }
+
+function addServices(){
+    let services = readArray();
+    for(let i=0;i<services.length;i++){
+        $("#txtService").append(`<option value="${services[i].description}">${services[i].price}</option`)
+    }
+}
 function init(){
     //creating pets using constructor
-    let p1= new Pet("Scooby", 60, "Male","pitbull", "Grooming", "Dog");
-    let p2= new Pet("Tweety",20,"Female","Parrot", "Wash", "Bird");
-    let p3= new Pet("Max", 50, "Male","Long haired", "Grooming", "Cat");
+    let p1= new Pet("Scooby", 60, "Male","pitbull", "Grooming", "Dog","$50");
+    let p2= new Pet("Tweety",20,"Female","Parrot", "Wash", "Bird","$15");
+    let p3= new Pet("Max", 50, "Male","Long haired", "Grooming", "Cat","$50");
     //pushing pets into the pets array
     petSalon.pets.push(p1,p2,p3);
-
+    addServices();
     displayPetCards();
 
     //hook events

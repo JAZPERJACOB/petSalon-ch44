@@ -10,6 +10,7 @@
 <body>
     <header>
         <h1>The Pet Salon</h1>
+        <img src="img/petsalon.header2.jpeg" alt="">
     </header>
     <main>
         <div class="register-pet">
@@ -37,12 +38,10 @@
                 <lablel>Service</lablel>
                 <select type="text" id="txtService">
                     <option>--Select a Service--</option>
-                    <option>Grooming</option>
-                    <option>Nail Trimming</option>
-                    <option>Hair Cut</option>
-                    <option>Full Wash</option>
+                    
                 </select>
             </div>
+            
             <div>
                 <label>Type</label>
                 <select type="text" id="txtType">
@@ -63,8 +62,11 @@
                 <th>NAME</th>
                 <th>AGE</th>
                 <th>GENDER</th>
-                <th>SERIVICE</th>
                 <th>BREED</th>
+                <th>SERVICE</th>
+                <th>TYPE</th>
+                <th>PRICE</th>
+                <th></th>
             </tr>
             <tbody id="pets">
 
@@ -72,7 +74,7 @@
             </tbody>
 
         </table>
-
+        <img src="img/petsalon.header.png" alt="">
         <h2>Payment Method</h2>
         <section class="payment-container">
             <div>
@@ -124,6 +126,7 @@
         </section>
     </main>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./scripts/storeManager.js"></script>
     <script src="./scripts/register.js"></script>
     <script src="./scripts/display.js"></script>
 </body>

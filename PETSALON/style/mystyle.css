@@ -26,7 +26,8 @@ button {
     flex-direction: column;
     background-color: rgb(187, 195, 175);
     text-align: center;
-
 }
-
+.table th{
+    width: 10%;
+}
 
